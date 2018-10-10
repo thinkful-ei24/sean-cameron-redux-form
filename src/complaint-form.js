@@ -4,15 +4,16 @@ import {Field, reduxForm} from 'redux-form';
 import "./complaint-form.css";
 import {required, nonEmpty, fiveChar, charNumber} from './validators';
 import Input from './input';
+import {register} from './actions';
 
 class ComplaintForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(values =>
-        console.log(values)
+        this.props.dispatch(register(values))
         )}>
         <Field component={Input} element="input" 
-          type="text" name="tracking" id="tracking" label="Tracking Number"
+          type="text" name="trackingNumber" id="trackingNumber" label="Tracking Number"
           validate={[required, nonEmpty, fiveChar, charNumber]} />
         <Field component={Input} element="select" name="issue" id="issue"
           label="What is your issue?">
