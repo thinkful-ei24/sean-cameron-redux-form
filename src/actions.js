@@ -27,7 +27,19 @@ export const register = values => dispatch => {
     return;
   })
   .then(() => console.log('Submitted with values', values))
-  .catch(err => 
-    Promise.reject(new SubmissionError({name: err.message}))
+  .catch(err => {
+    // const {reason, message, location} = err;
+    // err.status === 404 error.message
+    // if(err.status === 404) {
+      return Promise.reject(new SubmissionError({trackingNumber: err.message}))
+    // }
+
+    // return Promise.reject(
+    //   new SubmissionError({
+    //     _error: 'Error retrieving results'
+    //   })
+    // )
+
+  }
   );
 };

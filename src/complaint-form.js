@@ -8,6 +8,9 @@ import {register} from './actions';
 
 class ComplaintForm extends React.Component {
   render() {
+    if(this.props.submitSucceeded) {
+      return <div>{'Thanks for complaining :)'}</div>
+    }
     return (
       <form onSubmit={this.props.handleSubmit(values =>
         this.props.dispatch(register(values))
@@ -28,7 +31,7 @@ class ComplaintForm extends React.Component {
         <button type="submit">Submit</button>
       </form>
     );
-    }
+  }
 }
 
 export default reduxForm({
