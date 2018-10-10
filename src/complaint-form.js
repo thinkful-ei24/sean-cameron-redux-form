@@ -7,17 +7,17 @@ class ComplaintForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(values =>
-        this.props.dispatch(register(values))
+        console.log(values)
         )}>
         <label htmlFor="tracking">Tracking number</label>
         <Field component="input" type="text" name="tracking" id="tracking" />
-        <label htmlFor="issue-dropdown">What is your issue?</label>
-        <Field component="select" name="issue-dropdown" id="issue-dropdown">
-          <option>My delivery hasn't arrived</option>
-          <option>The wrong item was delivered</option>
-          <option>Part of my order was missing</option>
-          <option>Some of my order arrived damaged</option>
-          <option>Other (give details below)</option>
+        <label htmlFor="issue">What is your issue?</label>
+        <Field component="select" name="issue" id="issue">
+          <option value='not-delivered'>My delivery hasn't arrived</option>
+          <option value='wrong-item'>The wrong item was delivered</option>
+          <option value='missing-part'>Part of my order was missing</option>
+          <option value='damaged'>Some of my order arrived damaged</option>
+          <option value='other'>Other (give details below)</option>
         </Field>
         <label htmlFor="details">Give more details (optional)</label>
         <Field component="textarea" name="details" id="details" />
@@ -28,5 +28,8 @@ class ComplaintForm extends React.Component {
 }
 
 export default reduxForm({
-  form: 'complaint'
+  form: 'complaint',
+  initialValues: {
+    issue: 'not-delivered'
+  }
 })(ComplaintForm);
